@@ -188,7 +188,7 @@ input.active:valid {
     background-color: #dcfce6;
 }
 
-#check div {
+.check div {
     height: 1rem;
     font-size: 0.9rem;
     padding-top: 0.1rem;

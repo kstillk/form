@@ -26,7 +26,7 @@
                 You know you want to.
             </h2>
         </div>
-        <form action="" method="post">
+        <form action="" method="post" id="myform">
             <p>Let's do this!</p>
             <fieldset>
                 <div class="input">
@@ -45,11 +45,12 @@
                     <label for="phone">Phone</label>
                     <input type="phone" name="phone" id="phone">
                 </div>
-                <div class="input">
+                <div class="input check">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" required minlength="8">
+                    <div id="pasdiv"></div>
                 </div>
-                <div class="input" id="check">
+                <div class="input check">
                     <label for="confirm">Confirm password</label>
                     <input type="password" name="confirm" id="confirm" required>
                     <div id="div"></div>
@@ -57,7 +58,7 @@
             </fieldset>
         </form>
         <div class="bottom">
-            <button type="submit">Create Account</button>
+            <button type="submit" form="myform">Create Account</button>
             <p>Already have an account? <a href="./index.html">Log in</a></p>
         </div>
     </main>
@@ -73,6 +74,7 @@ const password = document.getElementById('password');
 const conf = document.getElementById('confirm');
 
 const match = document.getElementById('div');
+const length = document.getElementById('pasdiv');
 
 conf.addEventListener('keyup', () => {
     if (conf.value == password.value) {
@@ -80,7 +82,7 @@ conf.addEventListener('keyup', () => {
         password.setCustomValidity('');
         conf.setCustomValidity('')
     } else {
-        match.textContent = 'The passwords do not match';
+        match.textContent = 'Passwords do not match';
         password.setCustomValidity('invalid password')
         conf.setCustomValidity('invalid password')
     }
@@ -92,9 +94,15 @@ password.addEventListener('keyup', () => {
         password.setCustomValidity('');
         conf.setCustomValidity('');
     } else {
-        match.textContent = 'The passwords do not match';
+        match.textContent = 'Passwords do not match';
         password.setCustomValidity('invalid password');
         conf.setCustomValidity('invalid password');
+    }
+
+    if(password.value.length < 8) {
+        length.textContent = 'Your password is too short';
+    } else {
+        length.textContent = '';
     }
 })
 
